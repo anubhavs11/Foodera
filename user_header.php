@@ -1,5 +1,6 @@
 <html lang="en">
   <head>
+        <link rel="stylesheet" href="user_header.css">
     <title>Foodera</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,48 +15,6 @@
             $("#search").show();
         }
     </script>
-    <style>
-        #headitems{
-          font-size: 18px;
-        }
-        #login_btn{
-          margin-top: 1.4px;
-          color: white;
-        }
-        .navbar-default .navbar-nav>li>a,.navbar-default .navbar-nav>li>a:hover,.navbar-default .navbar-nav>li>a:active,.navbar-default .navbar-nav>li>a:visited,.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
-                color: #fff;
-            font-size: 18px;
-        }
-        #find{
-            color: #ea5b31;
-            margin-top: 10%;
-            margin-left:20%;                    
-            font-size: 4em;
-            font-weight: 300;
-            margin: 0;
-            margin-bottom: 10px;
-        }
-        #slider{
-            margin-left: 5px;
-            box-shadow: 0 0 black;
-        }
-        .input-group>*{
-            width: 40%;
-            border-color: #20ac76;
-            height: 50px;
-        }
-        #logo{
-            color: #fff;
-            font-family: inherit;
-            font-size: 40px;
-            margin-left:40px;
-        }
-        #logo_xs{
-            color: #fff;
-            font-family: inherit;
-            font-size: 25px;
-        }
-      </style>
   </head>
   <body onload="w3_close();">
     <div class="hidden-lg hidden-md hidden-sm">

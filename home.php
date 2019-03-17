@@ -1,4 +1,6 @@
 <?php
+ini_set('session.cache_limiter','public');
+session_cache_limiter(false);
 session_start();  
 include 'pdo.php';
 include 'user_header.php';
@@ -11,47 +13,11 @@ include 'user_header.php';
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="w3.css">
+     <link rel="stylesheet" href="home.css">
      <script src="bootstrap/jquery.min.js"></script>
       <script src="bootstrap/js/bootstrap.min.js"></script>
 </head>
-
-<style type="text/css">
-  #resto_img{
-    margin:10px;
-    border-radius: 4px;
-  }
-  .w3-card-4{
-    margin-bottom: 40px;
-  }
-  #time_btn,#time_btn:hover,#time_btn:active{
-    border-width: 0px;
-    background-color: white;
-  }
-  .dropdown-menu>li{
-    margin-left: 5px;
-  }
-  #open_resto{
-    color: #fff;
-    background-color: #48a920;
-    height: 40px;
-    border-color: #ffffff;
-    font-size: 18px;
-    width: 150px;
-  }
-  #search_btn{
-        border-width: 0px;
-    background-color: #b97b0a;
-    height: 40px;
-    border-color:white;
-    color: white;
-    font-family: sans-serif;
-    font-size: 18px;
-    border-radius: 4px;
-  }
-  .checked {
-    color: orange;
-  }
-</style><body>
+<body>
 <div class="w3-container">
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-9 col-sm-10 col-xs-12">
@@ -68,7 +34,7 @@ include 'user_header.php';
                         <option value="nagpur">Nagpur</option>
                         <option value="noida">Noida</option>
                         <option value="pune">Pune</option>           
-                    </select>       
+                    </select>
                     <input style="width:60%;" name="search_resto" type="text" placeholder="Enter any Restaurant Name (Optional)" class="form-control"/>             
                 </div><br>
                 <button id="search_btn" name="search_btn" class="btn-btn-primary">Search Restaurants</button>
@@ -163,7 +129,7 @@ include 'user_header.php';
 </div>
 </div>
 <div style="text-align: center;height: 60px;background-color: #e9e9f5;" class="container-fluid" >
-    <p style="margin-top: 20px;"> © Copyright 2018 </p>
+    <p style="margin-top: 20px;"> © Copyright 2019 </p>
   </div>
 </body>
 </html>

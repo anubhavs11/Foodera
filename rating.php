@@ -1,7 +1,9 @@
 <?php
-			session_start();
-			include 'pdo.php';
-			include 'user_header.php';
+	ini_set('session.cache_limiter','public');
+	session_cache_limiter(false);
+	session_start();
+	include 'pdo.php';
+	include 'user_header.php';
 ?>
 <html lang="en">
   <head>

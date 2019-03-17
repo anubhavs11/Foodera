@@ -5,9 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="w3.css">
+    <link rel="stylesheet" href="add_foods.css">
      <script src="bootstrap/jquery.min.js"></script>
       <script src="bootstrap/js/bootstrap.min.js"></script>
 <?php
+ini_set('session.cache_limiter','public');
+session_cache_limiter(false);
 session_start();
 include 'user_header.php';
 include 'pdo.php';
@@ -15,16 +18,13 @@ if(isset($_POST['name'])&&isset($_POST['street'])&&isset($_POST['district'])&&is
 	if(isset($_POST['working1'])&&isset($_POST['working2'])&&isset($_POST['working3'])&&isset($_POST['working4'])&&isset($_POST['working5'])&&isset($_POST['working6'])&&isset($_POST['working7'])){
 			if(!empty($_POST['name'])&&!empty($_POST['street'])&&!empty($_POST['district'])&&!empty($_POST['city'])&&!empty($_POST['state'])&&!empty($_POST['zipcode'])&&!empty($_POST['country'])){
 					if(!empty($_POST['working1'])&&!empty($_POST['working2'])&&!empty($_POST['working3'])&&!empty($_POST['working4'])&&!empty($_POST['working5'])&&!empty($_POST['working6'])&&!empty($_POST['working7'])){
-						
-								$stmt=$db->prepare("INSERT INTO restaurants (name,email,mob_no,delivery,preorder,liveorder,premoney,street,district,city,state,zipcode,country,working1,working2,working3,working4,working5,working6,working7,from1,from2,from3,from4,from5,from6,from7,to1,to2,to3,to4,to5,to6,to7) VALUES(:name,:email,:mob_no,:delivery,:preorder,:liveorder,:premoney,:street,:district,:city,:state,:zipcode,:country,:working1,:working2,:working3,:working4,:working5,:working6,:working7,:from1,:from2,:from3,:from4,:from5,:from6,:from7,:to1,:to2,:to3,:to4,:to5,:to6,:to7)");
+							
+								$stmt=$db->prepare("INSERT INTO restaurants(mob_no,email,delivery,name,street,district,city,state,zipcode,country,working1,working2,working3,working4,working5,working6,working7,from1,from2,from3,from4,from5,from6,from7,to1,to2,to3,to4,to5,to6,to7) VALUES(:mob_no,:email,:delivery,:name,:street,:district,:city,:state,:zipcode,:country,:working1,:working2,:working3,:working4,:working5,:working6,:working7,:from1,:from2,:from3,:from4,:from5,:from6,:from7,:to1,:to2,:to3,:to4,:to5,:to6,:to7)");
 
 								$stmt->bindParam(":name",$_POST['name']);
 								$stmt->bindParam(":email",$_POST['email']);
 								$stmt->bindParam(":mob_no",$_SESSION['mobile_no']);
 								$stmt->bindParam(":delivery",$_POST['delivery']);
-								$stmt->bindParam(":preorder",$_POST['preorder']);
-								$stmt->bindParam(":liveorder",$_POST['liveorder']);
-								$stmt->bindParam(":premoney",$_POST['premoney']);
 								$stmt->bindParam(":street",$_POST['street']);
 								$stmt->bindParam(":district",$_POST['district']);
 								$stmt->bindParam(":city",$_POST['city']);
@@ -58,56 +58,32 @@ if(isset($_POST['name'])&&isset($_POST['street'])&&isset($_POST['district'])&&is
 								
 								$stmt->execute();
 								include 'pdo.php';
-								$tablename=$_POST['name'];
-								$_SESSION['name']=$tablename;
-								$query="CREATE TABLE $tablename (food_id PRIMARY KEY,name varchar(60),details varchar(400),price int,quantity varchar(30),rating int)";
+								$resto_name = $_POST['name'];
+								$_SESSION['resto_name'] = $resto_name;
+								$resto_name = strtolower($resto_name);
+								$resto_name = str_replace(' ', '', $resto_name);
+								$query="CREATE TABLE $resto_name (food_id int PRIMARY KEY AUTO_INCREMENT,name varchar(60),details varchar(400),price int,quantity varchar(30),rating int)";
 								$stmt=$db->prepare($query);
 								$stmt->execute();
 								?>
 								<?php
 							}
 					}
-					
-
 		}
 }
 
 ?>
-<style type="text/css">
-	#food_image{
-		border-radius: 4px;
-	}
-	#add_item>input{
-		margin-bottom: 15px;
-		box-shadow: 0 0 black;
-	}
-	#add_btn{
-	    color: #fff;
-	    width: 200px;
-	    height: 40px;
-	    font-size: 18px;
-	    background-color: #33b742;
-	    border-color: #e0e0e0;
-	}
-	#next{
-		color: #333;
-    height: 40px;
-    font-size: 18px;
-    width: 100px;
-    background-color: #e2e2e2;
-    border-color: #ccc;
-	}
-</style>
 <body>
 	<div class="w3-container">	 
 	    <div class="row">
 	    	<div class="col-lg-8 col-lg-offset-2 col-md-8 col-sm-10 scol-xs-12">
 	    		<?php
-		    		if(isset($_POST['name'])&&isset($_POST['details'])&&isset($_POST['price'])&&isset($_POST['quantity'])){
-						if(!empty($_POST['name'])&&!empty($_POST['details'])&&!empty($_POST['price'])&&!empty($_POST['quantity'])){
-							$tablename=$_SESSION['name'];
+		    		if(isset($_POST['food_name'])&&isset($_POST['details'])&&isset($_POST['price'])&&isset($_POST['quantity'])){
+						if(!empty($_POST['food_name'])&&!empty($_POST['details'])&&!empty($_POST['price'])&&!empty($_POST['quantity'])){
+							$tablename=$_SESSION['resto_name'];
+							
 							$stmt=$db->prepare("INSERT INTO $tablename (name,details,price,quantity) VALUES(:name,:details,:price,:quantity)");
-							$stmt->bindParam(":name",$_POST['name']);
+							$stmt->bindParam(":name",$_POST['food_name']);
 							$stmt->bindParam(":details",$_POST['details']);
 							$stmt->bindParam(":price",$_POST['price']);
 							$stmt->bindParam(":quantity",$_POST['quantity']);
@@ -124,7 +100,7 @@ if(isset($_POST['name'])&&isset($_POST['street'])&&isset($_POST['district'])&&is
 				  	<h3> Enter  the food items that you want to add in your restaurant</h3>
 				  	<hr>
 				  	<h4>Name of food item</h4>
-				  	<input type="text" name="name" class="form-control" placeholder="e.g- Veg. Manchurian" />
+				  	<input type="text" name="food_name" class="form-control" placeholder="e.g- Veg. Manchurian" />
 				  	<h4> More about the item</h4>
 				  	<input type="text" name="details" class="form-control" placeholder="Deep-fried mixed vegetable balls sautéed with ginger-garlic paste, chilli sauce and chopped vegetables" />
 				  	<h4>Price (INR)</h4>

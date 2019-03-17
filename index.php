@@ -6,42 +6,21 @@
      <script src="bootstrap/jquery.min.js"></script>
       <script src="bootstrap/js/bootstrap.min.js"></script>
 <?php
+    ini_set('session.cache_limiter','public');
+    session_cache_limiter(false);
     require 'pdo.php';
     require 'header.php';
-       ?>
-<style type="text/css">
-	#background {
-                position: absolute;
-                left: 0px;
-                top: 0px;
-                opacity: 0.3;
-                z-index: -1;
-        }
-     #find{
-            color: #ea5b31;
-            margin-top: 10%;
-            margin-left:20%;                    
-            font-size: 4em;
-            font-weight: 300;
-            margin: 0;
-            margin-bottom: 10px;
-        }
-         #open_resto{
-    color: #fff;
-    background-color: #48a920;
-    height: 40px;
-    border-color: #ffffff;
-    font-size: 18px;
-    width: 150px;
-  }
-</style>
+?>
 <body>
+
+<link rel="stylesheet" type="text/css" href="index.css"> 
     <script type="text/javascript">
         function login_alert(){
             alert("Login to continue");
             window.location = 'login.php';
         }
     </script>
+
 <img id="background" src="image.jpg" class="img-responsive">
 <div class="container">
         <div class="row">
@@ -152,6 +131,6 @@
         </div>
     </div>
     <div style="text-align: center;height: 60px;background-color: #e9e9f5;" class="container-fluid" >
-    <p style="margin-top: 20px;"> © Copyright 2018 </p>
+    <p style="margin-top: 20px;"> © Copyright 2019 </p>
   </div>
 </body>

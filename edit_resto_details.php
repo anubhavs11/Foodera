@@ -1,5 +1,7 @@
   <?php
-  session_start();
+ini_set('session.cache_limiter','public');
+session_cache_limiter(false);
+session_start();
 include 'user_header.php';
 include 'pdo.php';
   ?>
@@ -10,28 +12,10 @@ include 'pdo.php';
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="w3.css">
+    <link rel="stylesheet" href="edit_resto_details.css">
      <script src="bootstrap/jquery.min.js"></script>
       <script src="bootstrap/js/bootstrap.min.js"></script>
-      <style type="text/css">
-          #time_day>h4,#to>h4{
-                margin-bottom: 23.5px;
-          }
-          pre{
-            background-color: white;
-            border-color:white;
-          }
-          #add_btn{
-            display: block;
-            width: 100%;
-            height: 50px;
-            color: white;
-            font-size: 18px;
-            background-color: #a94442;
-          }
-          #addr>input{
-            margin-bottom: 20px;
-          }
-      </style>
+      
    <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-9 col-sm-10 col-xs-12">
@@ -88,10 +72,8 @@ include 'pdo.php';
             }
           }
         }
-
-              ///commenting details
-
-              $mob_no=$_SESSION['mobile_no'];
+              $mob_no=$_COOKIE['mobile_no'];
+              
               $status=0;
             foreach($db->query("SELECT * FROM restaurants WHERE mob_no='$mob_no'") as $row){   ;
               $status=1;
@@ -127,13 +109,6 @@ include 'pdo.php';
                   <input value="<?php echo $row['zipcode']; ?>" required name="zipcode" class="form-control" type="text" placeholder="Zip Code name"/>
                  <h4>Country</h4>
                   <input  value="<?php echo $row['country']; ?>" required name="country" class="form-control" type="text" placeholder="Country name"/>
-                  <br>
-                  <h4> Enable Home Delivery <input class="w3-check" name="delivery" type="checkbox" /> </h4>
-                  <hr>
-                  <h4> Enable Pre-order <input class="w3-check" name="preorder" type="checkbox"/> </h4>
-                  <hr>
-                  <h4> Live Order <input class="w3-check" name="liveorder" type="checkbox" /> </h4>
-                  <hr>
                   <br>
                   <h3>Opening Details</h3><hr>
                 <div class="row">

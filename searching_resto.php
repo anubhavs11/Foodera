@@ -1,4 +1,6 @@
 <?php
+ini_set('session.cache_limiter','public');
+session_cache_limiter(false);
 include 'pdo.php';
 session_start();
 if(!empty($_SESSION['mobile_no'])){
@@ -10,44 +12,15 @@ else{
 ?>
 <!DOCTYPE html>
 <html>
-<title>W3.CSS</title>
-<title>Bootstrap Example</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="w3.css">
+    <link rel="stylesheet" href="search_resto.css">   
      <script src="bootstrap/jquery.min.js"></script>
       <script src="bootstrap/js/bootstrap.min.js"></script>
 </head>
-<style type="text/css">
-  #resto_img{
-    margin:10px;
-    border-radius: 4px;
-  }
-  .w3-card-4{
-    margin-bottom: 40px;
-  }
-  #time_btn,#time_btn:hover,#time_btn:active{
-    border-width: 0px;
-    background-color: white;
-  }
-  .dropdown-menu>li{
-    margin-left: 5px;
-  }
-  #open_resto{
-    color: #fff;
-    background-color: #48a920;
-    height: 40px;
-    border-color: #ffffff;
-    font-size: 18px;
-    width: 150px;
-  }
-  #footer{
-    height: 100px;
-    background-color: #e9e9f5;
-  }
-</style>
 <body>
 <div class="w3-container">
   <div class="row">

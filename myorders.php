@@ -1,4 +1,6 @@
 <?php
+ini_set('session.cache_limiter','public');
+session_cache_limiter(false);
 session_start();
 include 'user_header.php';
 include 'pdo.php';
@@ -11,13 +13,9 @@ include 'pdo.php';
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="w3.css">
+<link rel="stylesheet" href="myorders.css">
 <script src="bootstrap/jquery.min.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
-<style type="text/css">
-	.checked {
-    color: orange;
-	}
-</style>
 <div class="container">
 	<div class="row">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">

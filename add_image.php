@@ -5,26 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="w3.css">
+    <link rel="stylesheet" href="add_image.css">
      <script src="bootstrap/jquery.min.js"></script>
       <script src="bootstrap/js/bootstrap.min.js"></script>
-      <style type="text/css">
-      #upload_btn{
-        color: #f5f5f5;
-        background-color: #44a2d0;
-        height: 40px;
-        font-size: 18px;
-        border-color: #f1f1f1;
-      }
-      #next,#next:hover,#next:active{
-            color: #333;
-    background-color: #dadada;
-    height: 40px;
-    font-size: 18px;
-    width: 100px;
-    border-color: #f5f5f5;
-      }
-</style>
 <?php
+ini_set('session.cache_limiter','public');
+session_cache_limiter(false);
 session_start();
 include 'user_header.php';
 include 'pdo.php';

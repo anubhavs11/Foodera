@@ -1,7 +1,3 @@
-<?php
-    require 'header.php';
-    require 'pdo.php';
-?>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -9,25 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="w3.css">
-
-    <style type="text/css">
-    	.input-group>button{
-    		background-color: #ded8d8;
-    		font-size: 18px;
-    		border-radius: 0px;
-    	}
-    	#login_el{
-    		font-size:18px;
-    		box-shadow: 0 0 black;
-    		margin-top: 20px;
-    		font-weight: 300;
-    		font-family:  -webkit-pictograph ;
-    		font-size: 18px;
-    		width: 80%;
-    	}
-    </style>
-     <script src="../bootstrap/jquery.min.js"></script>
-      <script src="../bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="signup.css">
+    <script src="../bootstrap/jquery.min.js"></script>
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
+    <?php
+      ini_set('session.cache_limiter','public');
+      session_cache_limiter(false);
+      require 'header.php';
+      require 'pdo.php';
+    ?>
     <div class="container">
       	<div class="row">
       		<div style="margin-top:40px;" class="col-lg-8 col-lg-offset-3 col-md-9 col-sm-12 col-xs-12 ">
@@ -53,6 +39,7 @@
                     $stmt->bindParam(":pass",$_POST['pass']);
                     $stmt->execute();
                     $_SESSION['mobile_no']=$_POST['mob_no'];
+                    setcookie("mobile_no", $_POST['mob_no'] , time() + (86400 * 30), "/");
                     ?>
                     <script type="text/javascript">
                       window.location = "home.php";
@@ -66,9 +53,9 @@
                     <h4>Your Name</h4>
                     <input required id="login_el" name="name" class="form-control" type="text" placeholder="Name"/>
                     <h4>Registered Mobile Number</h4>
-                    <input required id="login_el" name="mob_no" class="form-control" type="text" placeholder="Mobile Number"/>
+                    <input required id="login_el" type="tel" pattern="^\d{10}$"  name="mob_no"  class="form-control" title="Must contain exactly 10 digits" placeholder="Mobile Number"/>
                     <h4>Your Password </h4>
-                    <input required id="login_el" name="pass" class="form-control" type="password" placeholder="Password" style="font-size:18px" />
+                    <input required id="login_el" name="pass" class="form-control" pattern="^(?=.*\d).{4,15}$" title="Password expression. Password must be between 4 and 15 digits long and include at least one numeric digit." type="password" placeholder="Password" style="font-size:18px" />
                     <button id="signup_btns" style="background-color: #5ab55d;width: 80%;" type="submit" class="btn btn-default btn-block" href="#">Sign-Up</button>
                   </form>
                 </div>
